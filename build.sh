@@ -21,12 +21,21 @@ JCA_BUILD=$JCA1CADAPTER_HOME/out
 
 #
 PROJECT_NAME="JCA 1C Adapter"
+echo
+echo
+echo -en $"\\033[1;32m"
 echo "*======================================================"
 echo "*"
-echo "* Starting build process for $PROJECT_NAME... "
+echo -en "* Starting build process for "
+echo -en $"\\033[1;31m"
+echo -en "$PROJECT_NAME"
+echo -en $"\\033[1;32m"
+echo "..."
 echo "* script written by Nio, version 1.0"
 echo "*"
 echo "*======================================================"
+echo -en $"\\033[1;39m"
+echo 
 echo
 
 #Check if JAVA_HOME path present...
