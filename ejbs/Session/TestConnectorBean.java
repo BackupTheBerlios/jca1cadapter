@@ -178,6 +178,8 @@ public class TestConnectorBean implements SessionBean {
     }
 
     public void testWriteData(DocumentDesc dd) throws ResourceException {
+        try { AuthInfo.setThreadDefault((new AuthProperties()).getAuthInfo());
+	} catch(Exception e) { }
         Cleaner.trackObjectsInCurrentThread();
 
         try {
@@ -303,10 +305,20 @@ public class TestConnectorBean implements SessionBean {
             rse.clear();
             is.setFunctionName("Write");
             i.execute(is, mr, mr);
+
+            //MakeActions
+            System.out.println("Executing: MakeActions()");
+            rsi.clear();
+            rse.clear();
+            is.setFunctionName("MakeActions");
+            i.execute(is, mr, mr);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-        	Cleaner.releaseAllInCurrentThread();
+		System.out.println("Cleaning objects in current thread...");
+        	Cleaner.releaseAllInCurrentThread();		
+		System.out.println("...done");
+		AuthInfo.setThreadDefault(null);
         };
     }
 }

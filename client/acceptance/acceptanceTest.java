@@ -100,6 +100,8 @@ public class acceptanceTest extends TestCase {
        	System.out.println("Client bean was created....");
        	c.getContext();
         DocumentDesc dd = new DocumentDesc();
-       	c.testImportData(dd);
+	for(int i=0; i<10; i++) {
+       	    c.testImportData(dd);
+	}
     }
 }
