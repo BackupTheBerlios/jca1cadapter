@@ -9,6 +9,9 @@ of the project
 to deploy on jboss 3.0(+) deploy folder, it also creates
 EJB classes archive and put one to the same folder on AS
 
+- checkout - freshes copy of your existing project with
+files updated on CVS server
+
 - makerelease - put source files, descriptors  into 
 archive, wich contains all nesessary files to distribute
 this project. There 2 types of archive are made - .zip
@@ -30,8 +33,16 @@ project
 (*) - used in internal task mostly
 
 
-USAGE EXAMPLE:
+LINUX USAGE EXAMPLE:
 
+    # ./checkout.sh (or # ./build.sh checkout)
     # ./build.sh
     # ./build.sh deploy
     # ./build.sh atest
+    
+WIN32 USAGE EXAMPLE:
+
+    checkout.bat (or build.bat checkout)
+    build.bat
+    build.bat deploy
+    build.bat atest
