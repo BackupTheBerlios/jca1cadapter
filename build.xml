@@ -7,7 +7,7 @@
 <!--                                                                -->
 <!-- ============================================================== -->
 
-<!-- $Id: build.xml,v 1.2 2002/11/26 20:01:22 nio Exp $ -->
+<!-- $Id: build.xml,v 1.3 2002/12/08 14:57:23 nio Exp $ -->
 
 <project name="jca1cadapter" default="compile" basedir=".">
 
@@ -23,6 +23,7 @@
   <property name="compile.debug"       value="true"/>
   <property name="compile.deprecation" value="false"/>
   <property name="compile.optimize"    value="true"/>
+  <property name="compile.encoding"    value="Cp1251"/>
 
 <!-- Names of archives for jar --> 
   <property name="SAR_FILE"         value="${app.name}.sar"/>
@@ -45,6 +46,7 @@
            destdir="${target.dir}"
              debug="${compile.debug}"
        deprecation="${compile.deprecation}"
+          encoding="${compile.encoding}"
           optimize="${compile.optimize}">
       <classpath  refid="compile.classpath"/>
     </javac>
@@ -88,8 +90,10 @@
   </target>
 
   <target name="atest" depends="compile">
+    <echo message="Project home: ${JCA1C_HOME}"/>
     <java fork="yes" classname="junit.textui.TestRunner"
-      taskname="junit" failonerror="true" jvmargs="-DJCA1C_HOME=${JCA1C_HOME}">
+      taskname="junit" failonerror="true">
+      <jvmarg value="-DJCA1C_HOME=${JCA1C_HOME}"/>
       <arg value="acceptance.acceptanceTest"/>
       <classpath>
         <pathelement path="${TARGET_DIR}"/>
@@ -112,7 +116,7 @@
 
   <target name="integration" depends="compile">
     <java fork="yes" classname="junit.textui.TestRunner"
-      taskname="junit" failonerror="true" jvmargs="-DJCA1C_HOME=${JCA1C_HOME}">
+      taskname="junit" failonerror="true" jvmarg="-DJCA1C_HOME=${JCA1C_HOME}">
       <arg value="AllJUnitTests"/>
       <classpath>
         <pathelement path="${TARGET_DIR}"/>

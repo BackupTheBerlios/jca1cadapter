@@ -5,7 +5,7 @@
 #
 
 #JAVA_HOME explores Java VM location root
-JAVA_HOME=/home/nio/jdk1.3.1_02
+JAVA_HOME=/home/nio/jdk1.4
 
 #ANT_HOME explores Ant 1.5(+) location root
 ANT_HOME=/home/nio/ant
@@ -32,6 +32,14 @@ echo -en "$PROJECT_NAME"
 echo -en $"\\033[1;32m"
 echo "..."
 echo "* script written by Nio, version 1.0"
+echo "*"
+echo "* Script environment:"
+echo "*"
+echo "* JAVA_HOME = $JAVA_HOME"
+echo "* ANT_HOME = $ANT_HOME"
+echo "* JBOSS_HOME = $JBOSS_HOME"
+echo "* JCA1CADAPTER_HOME = $JCA1CADAPTER_HOME"
+echo "* JCA_BUILD = $JCA_BUILD"
 echo "*"
 echo "*======================================================"
 echo -en $"\\033[1;39m"
