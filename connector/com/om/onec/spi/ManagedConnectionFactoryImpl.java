@@ -83,9 +83,9 @@ public class ManagedConnectionFactoryImpl implements ManagedConnectionFactory, S
                 if (o instanceof ManagedConnectionImpl) {
                     ManagedConnectionImpl managedConnection = (ManagedConnectionImpl)o;
                     ManagedConnectionFactory managedConnectionFactory = managedConnection.getManagedConnectionFactory();
-                    //                if(managedConnectionFactory.equals(this) &&
-                    // compareObjectsIncludingNull(managedConnection.getSubject(), subject) &&
-                    // compareObjectsIncludingNull(managedConnection.getConnectionRequestInfo(), cxRequestInfo))
+                    if(managedConnectionFactory.equals(this) &&
+                    //compareObjectsIncludingNull(managedConnection.getSubject(), subject) &&
+            	    compareObjectsIncludingNull(managedConnection.getConnectionRequestInfo(), cxRequestInfo))
                     return managedConnection;
                 }
             }
@@ -113,19 +113,19 @@ public class ManagedConnectionFactoryImpl implements ManagedConnectionFactory, S
         return m_logWriter;
     }
 
-    public String getUserName() {
+    public String getDbUser() {
         return m_userName;
     }
 
-    public void setUserName(String userName) {
+    public void setDbUser(String userName) {
         this.m_userName = userName;
     }
 
-    public String getPassword() {
+    public String getDbPassword() {
         return m_password;
     }
 
-    public void setPassword(String value) {
+    public void setDbPassword(String value) {
         this.m_password = value;
     }
 
@@ -135,5 +135,12 @@ public class ManagedConnectionFactoryImpl implements ManagedConnectionFactory, S
 
     public void setDbPath(String value) {
         this.m_dbPath = value;
+    }
+    
+    public boolean compareObjectsIncludingNull(Object o1, Object o2) {
+	if((o1==null)&&(o2==null)) return true;
+	if((o1!=null)&&(o2==null)) return false;
+	if((o1==null)&&(o2!=null)) return false;
+	return o1.equals(o2);
     }
 }

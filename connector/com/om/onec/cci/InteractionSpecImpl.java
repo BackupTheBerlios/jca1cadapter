@@ -7,6 +7,7 @@ import javax.resource.cci.InteractionSpec;
 import java.io.Serializable;
 
 import onec.IDispatchProxy;
+import com.om.onec.AuthProperties;
 
 /**
 * @author Andrej N. Chuchalov
@@ -51,7 +52,7 @@ public class InteractionSpecImpl implements InteractionSpec, Serializable {
 
     //dispatchObject mutator
     public void setDispatchObject(IDispatchProxy object) {
-        this.m_dispObj = object;
+	this.m_dispObj = object;
     }
 
     //dispatchObject accessor

@@ -81,18 +81,20 @@ public class ManagedConnectionImpl implements ManagedConnection {
 
             //Obtaining IDispatch
             System.out.println("[ManagedConnectionImpl] -> setting up 1C object...");
-            m_dispatchProxy = new IDispatchProxy(OneCCLSID, "127.0.0.1", (new AuthProperties()).getAuthInfo());
+	    AuthProperties ap = new AuthProperties();
+            m_dispatchProxy = new IDispatchProxy(OneCCLSID, ap.getIP(), ap.getAuthInfo());
             System.out.println("[ManagedConnectionImpl] -> 1C object succesfully created...");
 
             //Setting up parameters
             Integer rmTrade = (Integer)m_dispatchProxy.getPropertyByName("RMTrade");
-            String userName = managedConnectionFactory.getUserName();
-            String password = managedConnectionFactory.getPassword();
+            String userName = managedConnectionFactory.getDbUser();
+            String password = managedConnectionFactory.getDbPassword();
             String dbPath = managedConnectionFactory.getDbPath();
             String initString = String.valueOf(String.valueOf(
                 new StringBuffer("/D").append(dbPath).append(" /N").append(userName).append(" /P").append(password)));
             System.out.println(initString);
             Variant v1 = new Variant("RMTrade", Variant.VT_INT, rmTrade.intValue());
+	    System.out.println("RMTrade="+v1.toString());
             Variant v2 = new Variant("DBPath", Variant.VT_BSTR, initString);
             Variant v3 = new Variant("SPLASH", Variant.VT_BSTR, "SPLASH_SHOW");
 
@@ -146,6 +148,10 @@ public class ManagedConnectionImpl implements ManagedConnection {
 
     public LocalTransaction getLocalTransaction() throws ResourceException {
         throw new ResourceException("Not supported");
+    }
+    
+    public ConnectionRequestInfo getConnectionRequestInfo() {
+	return this.m_connectionRequestInfo;
     }
 
     public void setLogWriter(java.io.PrintWriter out) throws ResourceException {

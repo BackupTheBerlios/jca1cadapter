@@ -65,6 +65,16 @@ public class ConnectionFactoryImpl implements ConnectionFactory, Serializable, R
             String userName = (String)method.invoke(connectionSpec, null);
             method = connectionSpec.getClass().getMethod("getPassword", EMPTY_CLASS_ARRAY);
             String password = (String)method.invoke(connectionSpec, null);
+            method = connectionSpec.getClass().getMethod("getServerIp", EMPTY_CLASS_ARRAY);
+            String serverIp = (String)method.invoke(connectionSpec, null);
+            method = connectionSpec.getClass().getMethod("getDomain", EMPTY_CLASS_ARRAY);
+            String domain = (String)method.invoke(connectionSpec, null);
+            method = connectionSpec.getClass().getMethod("getDbUser", EMPTY_CLASS_ARRAY);
+            String dbUser = (String)method.invoke(connectionSpec, null);
+            method = connectionSpec.getClass().getMethod("getDbPassword", EMPTY_CLASS_ARRAY);
+            String dbPass = (String)method.invoke(connectionSpec, null);
+            method = connectionSpec.getClass().getMethod("getDbPath", EMPTY_CLASS_ARRAY);
+            String dbPath = (String)method.invoke(connectionSpec, null);
             InfoMap.put("UserName", userName);
             InfoMap.put("Password", password);
         }
