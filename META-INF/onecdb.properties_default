@@ -1,0 +1,5 @@
+//Change this values and rename this file to onecdb.properties
+
+DbPath=\"YourDBPathWithDoubleSlashes\"
+User=Your1CUserName
+Password=YourUserPassword

@@ -6,7 +6,7 @@
 <!--                                                                       -->
 <!-- ===================================================================== -->
 
-<!-- $Id: jboss-service.xml,v 1.2 2002/11/26 20:01:22 nio Exp $ -->
+<!-- $Id: jboss-service.xml,v 1.3 2003/01/04 20:44:46 nio Exp $ -->
 
 <server>
 
@@ -30,19 +30,19 @@
         <attribute name="ManagedConnectionFactoryProperties">
           <properties>
             <config-property>
-              <config-property-name>UserName</config-property-name>
+              <config-property-name>DbUser</config-property-name>
               <config-property-type>java.lang.String</config-property-type>
-              <config-property-value>InternetUserName</config-property-value>
+              <config-property-value>nio</config-property-value>
             </config-property>
             <config-property>
-              <config-property-name>Password</config-property-name>
+              <config-property-name>DbPassword</config-property-name>
               <config-property-type>java.lang.String</config-property-type>
-              <config-property-value>111</config-property-value>
+              <config-property-value>nio</config-property-value>
             </config-property>
             <config-property>
               <config-property-name>DbPath</config-property-name>
               <config-property-type>java.lang.String</config-property-type>
-              <config-property-value>"i:\\Documents And Settings\\Nio\\Desktop\\OneCBase\\Demo\\DemoDB\\"</config-property-value>
+              <config-property-value>f:\\1C77\\Data\\1SDBDemo</config-property-value>
             </config-property>
           </properties>
         </attribute>

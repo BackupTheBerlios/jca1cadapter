@@ -1,0 +1,17 @@
+// *******************************************************************
+//
+// This file is used for JIntegra DCOM authentification
+// For NT use domain name or WorkGroup PC net identification,
+// Also user name and password (as NT login)
+//
+// By Nio, 06-10-2002, v1.0
+//
+// *******************************************************************
+
+// Rename it to authinfo.properties and change values to NT matched
+// user info
+
+Ip=RemoteIpAddress
+Domain=YourDomainName
+User=YourUserName
+Password=YoutPassword
