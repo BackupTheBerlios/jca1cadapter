@@ -12,6 +12,12 @@ EJB classes archive and put one to the same folder on AS
 - checkout - freshes copy of your existing project with
 files updated on CVS server
 
+-checkoutall - does the same as checkout, but also upgrades
+libraries. This task is mostly used first time the project
+stores locally. This task also includes system configuration.
+See also IMPORTANT notes at the end of this document under 
+(*).
+
 - makerelease - put source files, descriptors  into 
 archive, wich contains all nesessary files to distribute
 this project. There 2 types of archive are made - .zip
@@ -35,14 +41,23 @@ project
 
 LINUX USAGE EXAMPLE:
 
-    # ./checkout.sh (or # ./build.sh checkout)
+    # ./checkout.sh [all] (or # ./build.sh <checkout|checkoutall>)(*)
     # ./build.sh
     # ./build.sh deploy
     # ./build.sh atest
     
 WIN32 USAGE EXAMPLE:
 
-    checkout.bat (or build.bat checkout)
+    checkout.bat [all] (or build.bat <checkout|checkoutall>)(*)
     build.bat
     build.bat deploy
     build.bat atest
+    
+(*) If you use 'all' option, system will prompt you to enter
+system configuration. This configuration will be saved in a
+.properties files on META-INF/ folder.
+You may skip this configuration by answering 'n' on the prompt.
+If you setup configuration manually by renaming *.properties_default
+files to *.properties and edit all of the values that must be set.
+In the end, you must correct file jboss-service.xml with the values
+that you have set in 'onecdb.properties' file

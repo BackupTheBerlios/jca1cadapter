@@ -7,7 +7,7 @@
 <!--                                                                -->
 <!-- ============================================================== -->
 
-<!-- $Id: build.xml,v 1.5 2003/01/05 13:19:57 nio Exp $ -->
+<!-- $Id: build.xml,v 1.6 2003/01/05 14:59:42 nio Exp $ -->
 
 <project name="jca1cadapter" default="compile" basedir=".">
 
@@ -233,6 +233,62 @@
     	 dest="."
          compression="true"
 	 quiet="true"/>
+    <setupconfig/>
+    <input 
+	message="Do you want to modify system access information?"
+	validargs="y,n"
+	addproperty="conf.DO_MODIFY"
+    />
+    <condition property="conf.ABORT">
+	<equals arg1="n" arg2="${conf.DO_MODIFY}" />
+    </condition>
+    <fail if="conf.ABORT">Environment modifications interrupted by user!!!</fail>
+    <input 
+	message="Enter NT server IP address: "
+	addproperty="conf.SERVER_IP"
+    />
+    <input 
+	message="Enter Domain Name or WorkGroup:"
+	addproperty="conf.SERVER_WG"
+    />
+    <input 
+	message="Enter User name to access NT machine using DCOM:"
+	addproperty="conf.USER_NAME"
+    />
+    <input 
+	message="Enter user password to access NT machine with defined user name:"
+	addproperty="conf.USER_PASSWORD"
+    />
+    <echo file="META-INF/authinfo.properties">IP=${conf.SERVER_IP}
+Domain=${conf.SERVER_WG}
+User=${conf.USER_NAME}
+Password=${conf.USER_PASSWORD}
+</echo>
+    <input 
+	message="Do you want to modify 1C:Enterprise access information?"
+	validargs="y,n"
+	addproperty="conf.DO_MODIFY"
+    />
+    <condition property="conf.ABORT">
+	<equals arg1="n" arg2="${conf.DO_MODIFY}" />
+    </condition>
+    <fail if="conf.ABORT">Environment modifications interrupted by user!!!</fail>
+    <input 
+	message="Enter 1C:Enterprise database path:"
+	addproperty="conf.DB_PATH"
+    />
+    <input 
+	message="Enter User name to access 1C:Enterprise:"
+	addproperty="conf.USER_NAME"
+    />
+    <input 
+	message="Enter user password to access 1C:Enterprise"
+	addproperty="conf.USER_PASSWORD"
+    />
+    <echo file="META-INF/onecdb.properties">DbPath=${conf.DB_PATH}
+User=${conf.USER_NAME}
+Password=${conf.USER_PASSWORD}
+</echo>
   </target>
-
+  
 </project>
