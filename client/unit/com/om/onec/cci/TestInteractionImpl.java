@@ -36,8 +36,8 @@ public class TestInteractionImpl extends TestCase {
         OneCDBProperties dbp = new OneCDBProperties();
 
         mcf.setDbPath(dbp.getDBPath());
-        mcf.setUserName(dbp.getUserName());
-        mcf.setPassword(dbp.getPassword());
+        mcf.setDbUser(dbp.getUserName());
+        mcf.setDbPassword(dbp.getPassword());
 
         cf = new ConnectionFactoryImpl(new DefaultConnectionManager(), mcf);
         c = (ConnectionImpl)cf.getConnection();

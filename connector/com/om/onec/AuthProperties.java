@@ -12,7 +12,7 @@ public class AuthProperties {
     public AuthProperties() throws IOException {
         props = new Properties();
         FileInputStream fis = new FileInputStream(
-            System.getProperty("JCA1C_HOME")+"\\META-INF\\authinfo.properties");
+            System.getProperty("JCA1C_HOME")+"/META-INF/authinfo.properties");
         props.load(fis);
     }
 
@@ -30,6 +30,10 @@ public class AuthProperties {
 
     public String getDomain() {
         return this.props.getProperty("Domain");
+    }
+    
+    public String getIP() {
+	return this.props.getProperty("Ip");
     }
 
     public AuthInfo getAuthInfo() {

@@ -11,7 +11,7 @@ public class OneCDBProperties {
     public OneCDBProperties() throws IOException {
         props = new Properties();
         FileInputStream fis = new FileInputStream(
-            System.getProperty("JCA1C_HOME")+"\\META-INF\\onecdb.properties");
+            System.getProperty("JCA1C_HOME")+"/META-INF/onecdb.properties");
         props.load(fis);
     }
 

@@ -38,8 +38,8 @@ public class TestManagedConnectionFactoryImpl extends TestCase {
       OneCDBProperties dbp = new OneCDBProperties();
 
       mcfi.setDbPath(dbp.getDBPath());
-      mcfi.setUserName(dbp.getUserName());
-      mcfi.setPassword(dbp.getPassword());
+      mcfi.setDbUser(dbp.getUserName());
+      mcfi.setDbPassword(dbp.getPassword());
 
       com.linar.jintegra.Cleaner.trackObjectsInCurrentThread();
 	  com.linar.jintegra.AuthInfo.setThreadDefault((new AuthProperties()).getAuthInfo());

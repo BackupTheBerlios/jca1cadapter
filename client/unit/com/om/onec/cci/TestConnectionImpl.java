@@ -33,8 +33,8 @@ public class TestConnectionImpl extends TestCase {
         OneCDBProperties dbp = new OneCDBProperties();
 
         mcf.setDbPath(dbp.getDBPath());
-        mcf.setUserName(dbp.getUserName());
-        mcf.setPassword(dbp.getPassword());
+        mcf.setDbUser(dbp.getUserName());
+        mcf.setDbPassword(dbp.getPassword());
 
         mc = (ManagedConnectionImpl)mcf.createManagedConnection(null, null);
 

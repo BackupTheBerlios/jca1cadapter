@@ -2,7 +2,8 @@
 
 package acceptance;
 
-import Session.*;
+import Session.local.*;
+import Session.remote.*;
 import javax.naming.*;
 import javax.rmi.PortableRemoteObject;
 import junit.framework.*;

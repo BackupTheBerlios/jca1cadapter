@@ -41,8 +41,8 @@ public class TestManagedConnectionImpl extends PrivateTestCase {
        OneCDBProperties dbp = new OneCDBProperties();
 
        mcfi.setDbPath(dbp.getDBPath());
-       mcfi.setUserName(dbp.getUserName());
-       mcfi.setPassword(dbp.getPassword());
+       mcfi.setDbUser(dbp.getUserName());
+       mcfi.setDbPassword(dbp.getPassword());
 
        s = new Subject();
        System.out.println("Creating managedConnectionImpl...");
