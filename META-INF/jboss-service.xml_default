@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!--  JBoss JCA Configuration for JCA 1C Adapter                           -->
+<!--                                                                       -->
+<!-- ===================================================================== -->
+
+<!-- $Id: jboss-service.xml_default,v 1.1 2003/01/05 12:57:11 nio Exp $ -->
+
+<server>
+
+    <mbean code="org.jboss.resource.connectionmanager.NoTxConnectionManager"
+                name="jboss.jca:service=NoTxCM,name=JCAAdapter">
+
+    <depends optional-attribute-name="ManagedConnectionFactoryName">
+    <mbean code="org.jboss.resource.connectionmanager.RARDeployment"
+            name="jboss.jca:service=NoTxDS,name=JCAAdapter">
+        <attribute name="JndiName">1CConnector</attribute>
+	<attribute name="ConnectionFactoryImplClass">com.om.onec.cci.ConnectionFactoryImpl</attribute>
+	<attribute name="ConnectionFactoryInterface">javax.resource.cci.ConnectionFactory</attribute>
+	<attribute name="ConnectionImplClass">com.om.onec.cci.ConnectionImpl</attribute>
+	<attribute name="ConnectionInterface">javax.resource.cci.Connection</attribute>
+	<attribute name="DisplayName">JCA 1C Adapter</attribute>
+	<attribute name="EisType">ERP</attribute>
+	<attribute name="ManagedConnectionFactoryClass">com.om.onec.spi.ManagedConnectionFactoryImpl</attribute>
+	<attribute name="TransactionSupport">NoTransaction</attribute>
+	<attribute name="VendorName">Openmind</attribute>
+	<attribute name="Version">1.0</attribute>
+        <attribute name="ManagedConnectionFactoryProperties">
+          <properties>
+            <config-property>
+              <config-property-name>DbUser</config-property-name>
+              <config-property-type>java.lang.String</config-property-type>
+              <config-property-value>nio</config-property-value>
+            </config-property>
+            <config-property>
+              <config-property-name>DbPassword</config-property-name>
+              <config-property-type>java.lang.String</config-property-type>
+              <config-property-value>nio</config-property-value>
+            </config-property>
+            <config-property>
+              <config-property-name>DbPath</config-property-name>
+              <config-property-type>java.lang.String</config-property-type>
+              <config-property-value>f:\\1C77\\Data\\1SDBDemo</config-property-value>
+            </config-property>
+          </properties>
+        </attribute>
+    </mbean>
+    </depends>
+    <depends optional-attribute-name="ManagedConnectionPool">
+        <mbean  code="org.jboss.resource.connectionmanager.JBossManagedConnectionPool"
+                    name="jboss.jca:service=NoTxPool,name=JCAAdapter">
+            <attribute name="MinSize">0</attribute>
+            <attribute name="MaxSize">50</attribute>
+            <attribute name="BlockingTimeoutMillis">50000</attribute>
+            <attribute name="IdleTimeoutMinutes">15</attribute>
+            <attribute name="Criteria">ByContainer</attribute>
+        </mbean>
+    </depends>
+    <depends  optional-attribute-name="CachedConnectionManager">jboss.jca:service=CachedConnectionManager</depends>
+    <depends>jboss.jca:service=RARDeployer</depends>
+    </mbean>
+
+</server>
