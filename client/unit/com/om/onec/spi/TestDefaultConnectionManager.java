@@ -1,9 +1,9 @@
-package com.om.onec.junit.unit.com.om.onec.adapter.spi;
+package unit.com.om.onec.spi;
 
 import junit.framework.*;
-import com.om.onec.adapter.spi.*;
-import com.om.onec.adapter.cci.*;
-import com.om.onec.common.*;
+import com.om.onec.spi.*;
+import com.om.onec.cci.*;
+import com.om.onec.*;
 
 import java.io.IOException;
 

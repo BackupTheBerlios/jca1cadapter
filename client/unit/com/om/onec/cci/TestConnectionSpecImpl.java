@@ -1,8 +1,8 @@
-package com.om.onec.junit.unit.com.om.onec.adapter.cci;
+package unit.com.om.onec.cci;
 
 import junit.framework.*;
 import junitx.framework.*;
-import com.om.onec.adapter.cci.ConnectionSpecImpl;
+import com.om.onec.cci.ConnectionSpecImpl;
 
 /** JUnitX PrivateTestCase. 
  * @testfamily JUnitX

@@ -1,10 +1,10 @@
-package com.om.onec.junit.unit.com.om.onec.adapter.cci;
+package unit.com.om.onec.cci;
 
 import junit.framework.*;
 import junitx.framework.*;
-import com.om.onec.adapter.cci.MappedRecordImpl;
-import com.om.onec.adapter.cci.ResultSetImpl;
-import com.om.onec.adapter.cci.RecordImpl;
+import com.om.onec.cci.MappedRecordImpl;
+import com.om.onec.cci.ResultSetImpl;
+import com.om.onec.cci.RecordImpl;
 import javax.resource.cci.Record;
 import javax.resource.cci.ResultSet;
 import java.util.HashMap;
