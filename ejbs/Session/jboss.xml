@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="US-ASCII"?>
+<jboss>
+    <secure>false</secure>
+    <container-configurations/>
+    <resource-managers/>
+    <enterprise-beans>
+        <session>
+            <ejb-name>TestConnectorBean</ejb-name>
+            <jndi-name>TestConnectorBean</jndi-name>
+        </session>
+        <session>
+            <ejb-name>ClientBean</ejb-name>
+            <jndi-name>ClientBean</jndi-name>
+        </session>
+    </enterprise-beans>
+</jboss>

@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ============================================================== -->
+<!--                                                                -->
+<!-- JCA 1C Enterprise Apapter build.xml                            -->
+<!-- for JBoss 3.0(+)                                               -->
+<!--                                                                -->
+<!-- ============================================================== -->
+
+<!-- $Id: build.xml,v 1.1 2002/11/21 14:11:39 nio Exp $ -->
+
+<project name="jca1cadapter" default="compile" basedir=".">
+
+  <property name="version.curr"     value="1.0.3a"/>
+  <property name="app.name"         value="jca1cadapter"/>
+  <property name="target.dir"       value="${TARGET_DIR}"/>
+  <property name="src.dir"	    value="connector"/>
+  <property name="ejb.dir"	    value="ejbs"/>
+  <property name="client.dir"	    value="client"/>
+  <property name="adapter.src"	    value="com/om/onec"/>
+
+<!-- Options for javac compiler -->
+  <property name="compile.debug"       value="true"/>
+  <property name="compile.deprecation" value="false"/>
+  <property name="compile.optimize"    value="true"/>
+
+<!-- Names of archives for jar --> 
+  <property name="SAR_FILE"         value="${app.name}.sar"/>
+  <property name="EJB_FILE"         value="${app.name}-beans.jar"/>
+
+<!-- Name of release zip file -->
+  <property name="ZIP_RELEASE"		value="${app.name}-${version.curr}.zip"/>
+  <property name="TAR_RELEASE"		value="${app.name}-${version.curr}.tar"/>
+  <property name="TAR_GZ_RELEASE"	value="${app.name}-${version.curr}.tar.gz"/>
+
+<!-- Setting classpath for compile target -->
+  <path id="compile.classpath">
+      <fileset dir="${JJL}/" includes="*.jar"/> <!-- JJL - JCA1CAdapter Lib folder -->
+      <fileset dir="${ASL}/" includes="*.jar"/> <!-- ASL - Application server Lib folder -->
+  </path>
+  
+<!-- Target compile: compiles source files to java classes -->
+  <target name="compile" depends="clean, init">
+    <javac  srcdir="."
+           destdir="${target.dir}"
+             debug="${compile.debug}"
+       deprecation="${compile.deprecation}"
+          optimize="${compile.optimize}">
+      <classpath  refid="compile.classpath"/>
+    </javac>
+  </target>
+  
+  <target name="sar" depends="compile">
+    <mkdir dir="${TARGET_DIR}/build"/>
+    <jar jarfile="${TARGET_DIR}/build/${SAR_FILE}">
+    <fileset dir="${TARGET_DIR}"
+      includes="com/**/*.class"/>
+    <fileset dir="." includes="META-INF/jboss-service.xml"/>
+    </jar>
+  </target>
+  
+  <target name="ejb" depends="compile">
+    <mkdir dir="${TARGET_DIR}/build"/>
+    <jar jarfile="${TARGET_DIR}/build/${EJB_FILE}">
+    <metainf dir="${TARGET_DIR}/${adapter.src}/junit/ejbs/Session"
+      includes="*.xml"/>
+    <fileset dir="${TARGET_DIR}"
+      includes="${adapter.src}/junit/ejbs/Session/*.class,
+      	${adapter.src}/adapter/cci/ConnectionSpecImpl.class,
+      	${adapter.src}/common/DocumentDesc.class"/>
+    </jar>
+  </target>
+  
+  <target name="javadoc" description="Generates javadoc api info">
+    <mkdir dir="${basedir}/Docs/api"/>
+    <javadoc sourcepath="."
+      destdir="${basedir}/Docs/api"
+      sourcefiles="adapter/cci/*.java,adapter/spi/*.java">
+    <classpath refid="compile.classpath"/>
+    </javadoc>
+  </target>
+  
+  <target name="deploy" description="Deploys .rar on server" depends="ejb,sar">
+    <copy file="${TARGET_DIR}/build/${EJB_FILE}"
+          todir="${ASD}"/>    
+    <copy file="${TARGET_DIR}/build/${SAR_FILE}"
+          todir="${ASD}"/>
+  </target>
+
+  <target name="atest" depends="compile">
+    <java fork="yes" classname="junit.textui.TestRunner"
+      taskname="junit" failonerror="true" jvmargs="-DJCA1C_HOME=${JCA1C_HOME}">
+      <arg value="acceptance.acceptanceTest"/>
+      <classpath>
+        <pathelement path="${TARGET_DIR}"/>
+        <fileset dir="${JUNIT}">
+          <include name="junit.jar"/>
+        </fileset>
+        <fileset dir="${JUNITX}">
+          <include name="junitx.jar"/>
+        </fileset>
+        <fileset dir="${JJL}">
+          <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${ASL}">
+          <include name="*.jar"/>
+        </fileset>
+      </classpath>
+
+    </java>
+  </target>
+
+  <target name="integration" depends="compile">
+    <java fork="yes" classname="junit.textui.TestRunner"
+      taskname="junit" failonerror="true" jvmargs="-DJCA1C_HOME=${JCA1C_HOME}">
+      <arg value="AllJUnitTests"/>
+      <classpath>
+        <pathelement path="${TARGET_DIR}"/>
+        <fileset dir="${JUNIT}">
+          <include name="junit.jar"/>
+        </fileset>
+        <fileset dir="${JUNITX}">
+          <include name="junitx.jar"/>
+        </fileset>
+        <fileset dir="${JJL}">
+          <include name="*.jar"/>
+        </fileset>
+        <fileset dir="${ASL}">
+          <include name="*.jar"/>
+        </fileset>
+      </classpath>
+
+    </java>
+  </target>
+
+  <target name="zip">
+    <mkdir dir="${TARGET_DIR}/release"/>
+  	<zip zipfile="${TARGET_DIR}/release/${app.name}.zip" basedir="."
+  		includes="**/*.java"/>
+  </target>
+  
+  <target name="tar">
+    <mkdir dir="${TARGET_DIR}/release"/>
+    <tar destfile="${TARGET_DIR}/release/${app.name}.tar"
+	  basedir="."
+	  includes="**/*.java"/>
+    <gzip zipfile="${TARGET_DIR}/release/${app.name}.tar.gz"
+	      src="${TARGET_DIR}/release/${app.name}.tar"/>
+    <delete file="${TARGET_DIR}/release/${app.name}.tar"/>
+  </target>
+  
+  <target name="makerelease">
+    <mkdir dir="${TARGET_DIR}/release"/>
+    <tar destfile="${TARGET_DIR}/release/${TAR_RELEASE}"
+	basedir="."
+	includes="**/*.java, **/*.xml, **/*.jar, **/*.sh, **/*.bat, **/*.properties_default"
+	excludes="${TARGET_DIR}/**/*"/>
+    <gzip zipfile="${TARGET_DIR}/release/${TAR_GZ_RELEASE}" src="${TARGET_DIR}/release/${TAR_RELEASE}"/>
+    <delete file="${TARGET_DIR}/release/${TAR_RELEASE}"/>
+    <zip zipfile="${TARGET_DIR}/release/${ZIP_RELEASE}"
+	basedir="."
+	includes="**/*.java, **/*.xml, **/*.jar, **/*.sh, **/*.bat"
+	excludes="${TARGET_DIR}/**/*"/>
+  </target>
+
+  <target name="clean">
+  	<delete failonerror="false" dir="${TARGET_DIR}" quiet="true"/>
+  </target>
+  
+  <target name="init">
+    <echo message="Build script for JCA 1C Adapter v${version.curr}"/>
+    <mkdir dir="${TARGET_DIR}"/>
+  </target>
+
+  
+</project>

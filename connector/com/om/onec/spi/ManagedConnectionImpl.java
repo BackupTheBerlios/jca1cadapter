@@ -3,8 +3,8 @@
 package com.om.onec.spi;
 
 
-import com.om.onec.adapter.cci.*;
-import com.om.onec.common.AuthProperties;
+import com.om.onec.cci.*;
+import com.om.onec.AuthProperties;
 import onec.IDispatchProxy;
 
 import javax.resource.spi.*;

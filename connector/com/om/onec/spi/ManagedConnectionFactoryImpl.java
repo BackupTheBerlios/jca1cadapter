@@ -2,7 +2,7 @@
 
 package com.om.onec.spi;
 
-import com.om.onec.adapter.cci.ConnectionFactoryImpl;
+import com.om.onec.cci.ConnectionFactoryImpl;
 import javax.resource.spi.*;
 import javax.resource.cci.ConnectionFactory;
 import javax.resource.ResourceException;

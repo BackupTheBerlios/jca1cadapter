@@ -6,7 +6,7 @@ package com.om.onec.cci;
 import javax.resource.ResourceException;
 import javax.resource.cci.*;
 
-import com.om.onec.adapter.spi.ManagedConnectionImpl;
+import com.om.onec.spi.ManagedConnectionImpl;
 
 import java.util.HashMap;
 import java.util.Iterator;

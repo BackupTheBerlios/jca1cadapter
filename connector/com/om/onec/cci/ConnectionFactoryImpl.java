@@ -2,7 +2,7 @@
 
 package com.om.onec.cci;
 
-import com.om.onec.adapter.spi.*;
+import com.om.onec.spi.*;
 import javax.resource.cci.*;
 import javax.resource.spi.*;
 import javax.resource.*;
