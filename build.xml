@@ -7,7 +7,7 @@
 <!--                                                                -->
 <!-- ============================================================== -->
 
-<!-- $Id: build.xml,v 1.1 2002/11/21 14:11:39 nio Exp $ -->
+<!-- $Id: build.xml,v 1.2 2002/11/26 20:01:22 nio Exp $ -->
 
 <project name="jca1cadapter" default="compile" basedir=".">
 
@@ -62,12 +62,12 @@
   <target name="ejb" depends="compile">
     <mkdir dir="${TARGET_DIR}/build"/>
     <jar jarfile="${TARGET_DIR}/build/${EJB_FILE}">
-    <metainf dir="${TARGET_DIR}/${adapter.src}/junit/ejbs/Session"
+    <metainf dir="ejbs/Session"
       includes="*.xml"/>
     <fileset dir="${TARGET_DIR}"
-      includes="${adapter.src}/junit/ejbs/Session/*.class,
-      	${adapter.src}/adapter/cci/ConnectionSpecImpl.class,
-      	${adapter.src}/common/DocumentDesc.class"/>
+      includes="Session/*.class,
+      	${adapter.src}/cci/ConnectionSpecImpl.class,
+      	${adapter.src}/DocumentDesc.class"/>
     </jar>
   </target>
   

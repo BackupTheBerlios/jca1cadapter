@@ -6,7 +6,7 @@
 <!--                                                                       -->
 <!-- ===================================================================== -->
 
-<!-- $Id: jboss-service.xml,v 1.1 2002/11/15 12:31:13 nio Exp $ -->
+<!-- $Id: jboss-service.xml,v 1.2 2002/11/26 20:01:22 nio Exp $ -->
 
 <server>
 
@@ -17,13 +17,13 @@
     <mbean code="org.jboss.resource.connectionmanager.RARDeployment"
             name="jboss.jca:service=NoTxDS,name=JCAAdapter">
         <attribute name="JndiName">1CConnector</attribute>
-	<attribute name="ConnectionFactoryImplClass">com.om.onec.adapter.cci.ConnectionFactoryImpl</attribute>
+	<attribute name="ConnectionFactoryImplClass">com.om.onec.cci.ConnectionFactoryImpl</attribute>
 	<attribute name="ConnectionFactoryInterface">javax.resource.cci.ConnectionFactory</attribute>
-	<attribute name="ConnectionImplClass">com.om.onec.adapter.cci.ConnectionImpl</attribute>
+	<attribute name="ConnectionImplClass">com.om.onec.cci.ConnectionImpl</attribute>
 	<attribute name="ConnectionInterface">javax.resource.cci.Connection</attribute>
 	<attribute name="DisplayName">JCA 1C Adapter</attribute>
 	<attribute name="EisType">ERP</attribute>
-	<attribute name="ManagedConnectionFactoryClass">com.om.onec.adapter.spi.ManagedConnectionFactoryImpl</attribute>
+	<attribute name="ManagedConnectionFactoryClass">com.om.onec.spi.ManagedConnectionFactoryImpl</attribute>
 	<attribute name="TransactionSupport">NoTransaction</attribute>
 	<attribute name="VendorName">Openmind</attribute>
 	<attribute name="Version">1.0</attribute>
