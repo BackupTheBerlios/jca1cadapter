@@ -1,0 +1,37 @@
+This document describe available tasks in build process
+with using inside of the build script by adding option
+value.
+
+- compile (defaul action) - compiles all source files
+of the project
+
+- deploy - compiles all source files, makes .sar file
+to deploy on jboss 3.0(+) deploy folder, it also creates
+EJB classes archive and put one to the same folder on AS
+
+- makerelease - put source files, descriptors  into 
+archive, wich contains all nesessary files to distribute
+this project. There 2 types of archive are made - .zip
+for win32 platform and .tar.gz - for *nix (differs only
+with build script)
+
+- atest - runs acceptanceTest to verify process
+connectivity.
+
+- integration - runs all of the tests present in the
+project
+
+- javadoc - generates javadoc information
+
+- clear - remove all files made by build process(*)
+
+- init - create output directory(*)
+
+(*) - used in internal task mostly
+
+
+USAGE EXAMPLE:
+
+    # ./build.sh
+    # ./build.sh deploy
+    # ./build.sh atest
