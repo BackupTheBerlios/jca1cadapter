@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE connector PUBLIC '-//Sun Microsystems, Inc.//DTD Connector 1.0//EN' 'http://java.sun.com/dtd/connector_1_0.dtd'>
+
+<connector>
+  <display-name>1C JCA Adapter</display-name>
+  <vendor-name>Openmind</vendor-name>
+  <spec-version>1.0</spec-version>
+  <eis-type>1C</eis-type>
+  <version>0.1</version>
+  <resourceadapter>
+    <managedconnectionfactory-class>com.om.onec.adapter.spi.ManagedConnectionFactoryImpl</managedconnectionfactory-class>
+    <connectionfactory-interface>javax.resource.cci.ConnectionFactory</connectionfactory-interface>
+    <connectionfactory-impl-class>com.om.onec.adapter.cci.ConnectionFactoryImpl</connectionfactory-impl-class>
+    <connection-interface>javax.resource.cci.Connection</connection-interface>
+    <connection-impl-class>com.om.onec.adapter.cci.ConnectionImpl</connection-impl-class>
+    <transaction-support>NoTransaction</transaction-support>
+    <authentication-mechanism>
+      <authentication-mechanism-type>BasicPassword</authentication-mechanism-type> 
+      <credential-interface>javax.resource.security.PasswordCredential</credential-interface> 
+    </authentication-mechanism>
+    <reauthentication-support>false</reauthentication-support>
+  </resourceadapter>
+
+   <config-property>
+     <description>The name of the user, with which to logon to the system</description>
+     <config-property-name>UserName</config-property-name>
+     <config-property-type>java.lang.String</config-property-type>
+     <config-property-value>Admin</config-property-value>
+   </config-property>
+   <config-property>
+     <description>The password, with wich to logon to the system</description>
+     <config-property-name>Password</config-property-name>
+     <config-property-type>java.lang.String</config-property-type>
+     <config-property-value></config-property-value>
+   </config-property>
+   <config-property>
+     <description>Path where is the 1C Enterprise database's location</description>
+     <config-property-name>DbPath</config-property-name>
+     <config-property-type>java.lang.String</config-property-type>
+     <config-property-value>c:\\1cv77\\DemoDB\\</config-property-value>
+   </config-property>
+</connector>
+
